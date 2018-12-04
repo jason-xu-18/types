@@ -237,6 +237,41 @@ type AmazonElasticContainerServiceConfig struct {
 	AssociateWorkerNodePublicIP *bool    `json:"associateWorkerNodePublicIp,omitempty" norman:"default=true"`
 }
 
+type OracleKubernetesEngineServiceConfig struct {
+//The OCID of the compartment in which the cluster exists
+ClusterCompartmentID string `json:"compartmentid"`
+//The version of Kubernetes running on the cluster masters
+KubernetesVersionmaster string `json:"kubernetesversionmaster"`
+//The OCID of the network compartment
+NetworkCompartment string `json:"networkcompartment"`
+//The OCID of the virtual cloud network
+VcnID string `json:"vcnid"`
+//The first OCID of the subnets used for Kubernetes services load balancers
+subnet1ID string `json:"subnet1ID"`
+//The second OCID of the subnets used for Kubernetes services load balancers
+subnet2ID string `json:"subnet2ID"`
+//The CIDR block for Kubernetes pods
+PodsCidr string `json:"podscidr"`
+//The CIDR block for Kubernetes services
+ServicesCidr string `json:"servicecidr"`
+//The name of the node pool
+NodepoolName string `json:"nodepoolname"`
+//The version of Kubernetes running on the nodes in the node pool
+KubernetesVersionnode string `json:"kubernetesversionnode"`
+//The name of the image running on the nodes in the node pool
+NodeImagename string `json:"nodeimagename"`
+//The name of the code shape of the nodes in the node pool
+NodeShape string `json:"nodeshape"`
+//The OCIDs of the subnets in which to place nodes for node pool
+NodeSubnetIDs string `json:"nodesubnetids"`
+//The number of nodes in each subnet
+QuantityPerSubnet string `json:"quantitypersubnet"`
+//The SSH public key on each node in the node pool
+nodesshpublickey string `json:"nodesshpublickey,omitempty"`
+//A list of key/value pairs to add to nodes after they join the Kubernetes cluster
+initialNodeLabels map[string]string `json:"key,value"`
+}
+
 type ClusterRegistrationToken struct {
 	types.Namespaced
 

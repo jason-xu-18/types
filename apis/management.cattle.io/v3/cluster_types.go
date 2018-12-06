@@ -45,6 +45,7 @@ const (
 	ClusterDriverGKE      = "googleKubernetesEngine"
 	ClusterDriverEKS      = "amazonElasticContainerService"
 	ClusterDriverAKS      = "azureKubernetesService"
+	ClusterDriverOKE      = "OracleKubernetesEngineService"
 )
 
 type Cluster struct {
@@ -238,38 +239,44 @@ type AmazonElasticContainerServiceConfig struct {
 }
 
 type OracleKubernetesEngineServiceConfig struct {
-//The OCID of the compartment in which the cluster exists
-ClusterCompartmentID string `json:"compartmentid"`
-//The version of Kubernetes running on the cluster masters
-KubernetesVersionmaster string `json:"kubernetesversionmaster"`
-//The OCID of the network compartment
-NetworkCompartment string `json:"networkcompartment"`
-//The OCID of the virtual cloud network
-VcnID string `json:"vcnid"`
-//The first OCID of the subnets used for Kubernetes services load balancers
-subnet1ID string `json:"subnet1ID"`
-//The second OCID of the subnets used for Kubernetes services load balancers
-subnet2ID string `json:"subnet2ID"`
-//The CIDR block for Kubernetes pods
-PodsCidr string `json:"podscidr"`
-//The CIDR block for Kubernetes services
-ServicesCidr string `json:"servicecidr"`
-//The name of the node pool
-NodepoolName string `json:"nodepoolname"`
-//The version of Kubernetes running on the nodes in the node pool
-KubernetesVersionnode string `json:"kubernetesversionnode"`
-//The name of the image running on the nodes in the node pool
-NodeImagename string `json:"nodeimagename"`
-//The name of the code shape of the nodes in the node pool
-NodeShape string `json:"nodeshape"`
-//The OCIDs of the subnets in which to place nodes for node pool
-NodeSubnetIDs string `json:"nodesubnetids"`
-//The number of nodes in each subnet
-QuantityPerSubnet string `json:"quantitypersubnet"`
-//The SSH public key on each node in the node pool
-nodesshpublickey string `json:"nodesshpublickey,omitempty"`
-//A list of key/value pairs to add to nodes after they join the Kubernetes cluster
-initialNodeLabels map[string]string `json:"key,value"`
+	//the OCID of the tenancy
+	TenancyID string `json:"tenancyID"`
+	//the OCID of the user
+	UserID string `json:"userID"`
+	//resource region
+	Region string `json:"region"`
+	//the cluster compartment in which the cluster exists
+	ClusterCompartment string `json:"clusterCompartment"`
+	//the version of Kubernetes specified when creating the managed cluster
+	KubernetesVersion string `json:"kubernetesVersion"`
+	//the network compartment
+	NetworkCompartment string `json:"networkCompartment"`
+	//the name of the virtual cloud network
+	Vcn string `json:"vcn"`
+	//comma-separated list of subnets in the virtual network to use,just support two subnets
+	Subnets []string `json:"subnets"`
+	//the CIDR block for Kubernetes services
+	ServicesCidr string `json:"serviceCidr"`
+	//The CIDR block for Kubernetes pods
+	PodsCidr string `json:"podsCidr"`
+	//The name of the node pool
+	NodePoolName string `json:"nodePoolName"`
+	//The version of Kubernetes running on the nodes in the node pool
+	KubernetesVersionNode string `json:"kubernetesVersionNode"`
+	//the image running on the nodes in the node pool
+	NodeImageName string `json:"nodeImageName"`
+	//the node shape of the nodes in the node pool
+	NodeShape string `json:"nodeShape"`
+	//the subnets in which to place nodes for node pool
+	NodeSubnets string `json:"nodeSubnets"`
+	//The number of nodes in each subnet
+	QuantityPerSubnet string `json:"quantityPerSubnet"`
+	//The SSH public key to access your nodes
+	nodeSshKey string `json:"nodeSshKey,omitempty"`
+	//The api key of the user
+	apiKey string `json:"apiKey,omitempty"`
+	//The map of Kubernetes labels (key/value pairs) to be applied to each node
+	labels map[string]string `json:"key,value"`
 }
 
 type ClusterRegistrationToken struct {

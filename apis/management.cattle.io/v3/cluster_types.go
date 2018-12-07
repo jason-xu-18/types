@@ -272,9 +272,11 @@ type OracleKubernetesEngineServiceConfig struct {
 	//The number of nodes in each subnet
 	QuantityPerSubnet string `json:"quantityPerSubnet"`
 	//The SSH public key to access your nodes
-	nodeSshKey string `json:"nodeSshKey,omitempty"`
+	NodeSshKey string `json:"nodeSshKey,omitempty"`
 	//The api key of the user
-	apiKey string `json:"apiKey,omitempty"`
+	ApiKey string `json:"apiKey,omitempty"`
+	//The api key of the user
+	FingerPrint string `json:"apiKey,omitempty"`
 	//The map of Kubernetes labels (key/value pairs) to be applied to each node
 	labels map[string]string `json:"key,value"`
 }

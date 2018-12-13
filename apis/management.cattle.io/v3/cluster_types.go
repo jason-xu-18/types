@@ -278,7 +278,7 @@ type OracleKubernetesEngineServiceConfig struct {
 	//The api key of the user
 	FingerPrint string `json:"apiKey,omitempty"`
 	//The map of Kubernetes labels (key/value pairs) to be applied to each node
-	labels map[string]string `json:"key,value"`
+	Labels map[string]string `json:"key,value"`
 }
 
 type ClusterRegistrationToken struct {
